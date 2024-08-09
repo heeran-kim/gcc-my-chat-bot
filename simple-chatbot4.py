@@ -57,16 +57,17 @@ if file is not None:
     text = ""
     for page in pdf_reader.pages:
         text += page.extract_text()
-        chunks = text_splitter.split_text(text)
-        st.write(chunks)
-        embeddings = OpenAIEmbeddings(openai_api_key = key)
-        vector_store = FAISS.from_texts(chunks, embeddings)
+    
+    chunks = text_splitter.split_text(text)
+    st.write(chunks)
+    embeddings = OpenAIEmbeddings(openai_api_key = key)
+    vector_store = FAISS.from_texts(chunks, embeddings)
 
-        # Input field for user questions
-        question = st.text_input("Input your question")
-        # Perform similarity search with the user's question
-        matches = vector_store.similarity_search(question)
-        if question:
-            st.write(matches)
+    # Input field for user questions
+    question = st.text_input("Input your question")
+    # Perform similarity search with the user's question
+    matches = vector_store.similarity_search(question)
+    if question:
+        st.write(matches)
 else:
     st.write("Input a file...")
