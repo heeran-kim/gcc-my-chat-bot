@@ -35,9 +35,6 @@ import os
 # Retrieve the OpenAI API key from environment variables
 key = os.getenv("OPEN_API_KEY")
 
-# Initialise the OpenAI embeddings with the API key
-embeddings = OpenAIEmbeddings(openai_api_key = key)
-
 st.header("A simple chat bot based on one pdf file")
 
 st.sidebar.header("Document")
@@ -58,8 +55,9 @@ if file is not None:
         text += page.extract_text()
         chunks = text_splitter.split_text(text)
         st.write(chunks)
+        # Initialise the OpenAI embeddings with the API key
+        embeddings = OpenAIEmbeddings(openai_api_key = key)
         # Convert the text chunks into embeddings and store them in a FAISS vector store
         vector_store = FAISS.from_texts(chunks, embeddings)
 else:
     st.write("Input a file...")
-
