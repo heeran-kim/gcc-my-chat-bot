@@ -43,8 +43,8 @@ if file is not None:
     text = ""
     for page in pdf_reader.pages:
         text += page.extract_text()
-        chunks = text_splitter.split_text(text)
-        st.write(chunks)
+    chunks = text_splitter.split_text(text)
+    st.write(chunks)
 else:
     st.write("Input a file...")
 
