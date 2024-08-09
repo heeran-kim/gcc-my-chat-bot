@@ -1,4 +1,7 @@
 # Run: streamlit run elements.py
+# Layout: header, sidebar, write
+# Form: selectbox, multiselects, checkbox
+# File: file_uploader
 
 import streamlit as st
 
