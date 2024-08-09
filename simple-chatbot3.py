@@ -1,6 +1,6 @@
 """
 This simple chatbot application allows users to upload a PDF file and extracts the text content from it,
-and then splits the text into manageable chunks. (NEW)
+and then splits the text into manageable chunks.
 The extracted text is then displayed on the web page.
 
 Libraries used:
@@ -53,11 +53,11 @@ if file is not None:
     text = ""
     for page in pdf_reader.pages:
         text += page.extract_text()
-        chunks = text_splitter.split_text(text)
-        st.write(chunks)
-        # Initialise the OpenAI embeddings with the API key
-        embeddings = OpenAIEmbeddings(openai_api_key = key)
-        # Convert the text chunks into embeddings and store them in a FAISS vector store
-        vector_store = FAISS.from_texts(chunks, embeddings)
+    chunks = text_splitter.split_text(text)
+    st.write(chunks)
+    # Initialise the OpenAI embeddings with the API key
+    embeddings = OpenAIEmbeddings(openai_api_key = key)
+    # Convert the text chunks into embeddings and store them in a FAISS vector store
+    vector_store = FAISS.from_texts(chunks, embeddings)
 else:
     st.write("Input a file...")
